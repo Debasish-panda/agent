@@ -10,17 +10,11 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
-        format_sql: true
+        format_sql: false
     show-sql: false
   flyway:
     enabled: true
     locations: classpath:db/migration
-  security:
-    user:
-      name: admin
-      password: admin
-  jackson:
-    default-property-inclusion: non_null
 
 server:
   port: ${APP_PORT:8080}
@@ -42,3 +36,8 @@ management:
   endpoint:
     health:
       show-details: always
+
+logging:
+  level:
+    org.springframework.security: INFO
+    com.agent: INFO
