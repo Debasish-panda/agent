@@ -1,0 +1,44 @@
+server:
+  port: ${SERVER_PORT:8080}
+  shutdown: graceful
+spring:
+  application:
+    name: customer-service-backend
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/agent_db}
+    username: ${SPRING_DATASOURCE_USERNAME:agent_user}
+    password: ${SPRING_DATASOURCE_PASSWORD:change_me}
+    hikari:
+      maximum-pool-size: ${DB_POOL_SIZE:10}
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: UTC
+  flyway:
+    enabled: true
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+      password: ${REDIS_PASSWORD:}
+      timeout: 2s
+  jackson:
+    default-property-inclusion: non_null
+app:
+  demo:
+    admin-email: ${DEMO_ADMIN_EMAIL:admin@democommerce.com}
+    admin-password: ${DEMO_ADMIN_PASSWORD:DemoPass123!}
+  jwt:
+    secret: ${JWT_SECRET:local-development-secret-change-before-deployment-0123456789}
+    expiration: ${JWT_EXPIRATION_MS:86400000}
+  providers:
+    ai: ${AI_PROVIDER:mock}
+    crm: ${CRM_PROVIDER:mock}
+    telephony: ${TELEPHONY_PROVIDER:mock}
+logging:
+  level:
+    org.springframework.security: INFO
